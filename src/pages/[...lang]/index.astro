@@ -1,12 +1,11 @@
 ---
 import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
-import { getListPage } from "@/lib/contentParser.astro";
-import { getTranslations, supportedLang } from "@/lib/utils/languageParser";
+import { supportedLang } from "@/lib/utils/languageParser";
 
 import { BsEnvelope } from "react-icons/bs";
-import ImageMod from "../../layouts/components/ImageMod.astro";
 import { FaPhoneAlt } from "react-icons/fa";
+import ImageMod from "../../layouts/components/ImageMod.astro";
 
 export function getStaticPaths() {
   const paths = supportedLang.map((lang) => ({
@@ -17,11 +16,7 @@ export function getStaticPaths() {
 
 const { lang } = Astro.params;
 
-
 const { contact_form_action }: { contact_form_action: string } = config.params;
-
-
-
 ---
 
 <Base
@@ -30,15 +25,21 @@ const { contact_form_action }: { contact_form_action: string } = config.params;
   description={"Landing page The Stoners Geneve"}
 >
   <section class="section-sm">
-    <div class="container flex flex-row">
-      <div class="row col-8">
+    <div class="container lg:flex lg:flex-row">
+      <div class="row col-12 lg:col-8">
         <div class="mx-auto md:col-10 lg:col-6">
-          <form class="mb-14" action={contact_form_action} method="POST" name="contact" data-netlify="true">
+          <form
+            class="mb-14"
+            action={contact_form_action}
+            method="POST"
+            name="contact"
+            data-netlify="true"
+          >
             <div class="mb-14">
               <h1>
                 <p class="font-bold text-4xl">Our new website is on its way.</p>
               </h1>
-              <p class="text-xl">
+              <p class="text-2xl">
                 Sign up and be the first to know when we launch.
               </p>
             </div>
@@ -60,23 +61,27 @@ const { contact_form_action }: { contact_form_action: string } = config.params;
               >Notify me</button
             >
           </form>
-          <div class="mb-6"><p>For any inquiry, please contact us :</p></div>
-          <div class="flex space-x-2">
-            <BsEnvelope /><a href="mailto:contact@stoners-geneve.com"> contact@stoners-geneve.com</a>
+          <div class="mb-6"><p class="text-xl">For any inquiry, please contact us :</pc></div>
+          <div class="flex space-x-2 text-xl">
+            <BsEnvelope /><a href="mailto:contact@stoners-geneve.com">
+              contact@stoners-geneve.com</a
+            >
           </div>
-          <div class="flex space-x-2">
+          <div class="flex space-x-2 text-xl">
             <FaPhoneAlt /><p>+ 41 79 358 27 58</p>
           </div>
         </div>
       </div>
-      <div class="row col-4"><ImageMod
-        src={"/images/LeonoraAlexander1.jpg"}
-        height={500}
-        width={500}
-        alt={""}
-        class="w-full rounded"
-        format="webp"
-      /></div>
+      <div class="row col-12 lg:col-4 my-14">
+        <ImageMod
+          src={"/images/LeonoraAlexander1.jpg"}
+          height={500}
+          width={500}
+          alt={""}
+          class="w-full rounded"
+          format="webp"
+        />
+      </div>
     </div>
   </section>
 </Base>
