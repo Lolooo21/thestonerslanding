@@ -3,18 +3,13 @@ import Logo from "@/components/Logo.astro";
 import config from "@/config/config.json";
 import {
   getLangFromUrl,
-  getTranslations,
 } from "@/lib/utils/languageParser";
-import type { ContentEntryMap } from "astro:content";
-import { IoSearch } from "react-icons/io5";
 
 let lang = getLangFromUrl(Astro.url);
-const menu = await getTranslations(lang as keyof ContentEntryMap);
 
-const { navigation_button, settings } = config;
+
 const { default_language } = config.settings;
-const { pathname } = Astro.url;
-const { get_started } = await getTranslations(lang as keyof ContentEntryMap);
+
 
 const disabledLanguages = config.settings.disable_languages as string[];
 if (disabledLanguages.includes(lang)) {
@@ -22,10 +17,10 @@ if (disabledLanguages.includes(lang)) {
 }
 ---
 
-<header class={`header z-30 ${settings.sticky_header && "sticky top-0"}`}>
-  <nav class="navbar container">
+<header class="header z-30 lg:sticky top-0">
+  <nav class="navbar ">
     {/* logo */}
-    <div class="order-0">
+    <div class="order-0 text-center w-full h-24">
       <Logo />
     </div>
     
